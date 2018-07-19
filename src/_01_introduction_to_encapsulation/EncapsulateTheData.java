@@ -1,5 +1,9 @@
 package _01_introduction_to_encapsulation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.Test;
+
 /*
  * Encapsulation is a way of protecting the data in a class from being
  * unintentionally altered from another class.
@@ -28,7 +32,69 @@ public class EncapsulateTheData {
 	String nomenclature = " "; //must not be set to a blank string. Blank Strings get set to a space
 	Object memberObj; //can be any object type except String. Strings get turned into objects.
 	
-	public static void main(String[] args) {
-		
+	public void setItemsRecived(int items) {
+		if (items < 0) {
+			itemsReceived = 0;
+		}
+		else {
+			itemsReceived = items;
+		}
+	}
+	void setDegreesTurned(float degrees) {
+		if (degrees < 0 || degrees > 360) {
+			degreesTurned = 0;
+		}
+		else {
+			degreesTurned = degrees;
+		}
+	}
+	void setNomenclature(String nc) {
+		if (nc.isEmpty()) {
+			nomenclature = " ";
+		}
+		else {
+			nomenclature = nc;
+		}
+	}
+	void memberObj(Object o) {
+		if (o instanceof String) {
+			memberObj = (Object)o;
+		}
+		else {
+			memberObj = o;
+		}
+	}
+	@Test
+	public void itemsRecievedTest() {
+		setItemsRecived(10);
+		assertEquals(10, itemsReceived);
+		setItemsRecived(-10);
+		assertEquals(0, itemsReceived);
+	}
+	
+	@Test
+	public void degreesTurnedTest() {
+		setDegreesTurned(90);
+		assertEquals(90, degreesTurned);
+		setDegreesTurned(-10);
+		assertEquals(0, degreesTurned);
+		setDegreesTurned(370);
+		assertEquals(0, degreesTurned);
+	}
+	
+	@Test
+	public void NomenclatureTest() {
+		setNomenclature("methanic");
+		assertEquals("methanic", nomenclature);
+		setNomenclature("");
+		assertEquals(" ", nomenclature);
+	}
+	
+	@Test
+	public void setMemberObject() {
+		memberObj(10);
+		assertEquals(10, memberObj);
+		memberObj("This is a string");
+		assertEquals(memberObj instanceof Object, (Object)memberObj instanceof Object);
 	}
 }
