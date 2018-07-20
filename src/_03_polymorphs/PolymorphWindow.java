@@ -3,11 +3,13 @@ package _03_polymorphs;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -20,7 +22,11 @@ public class PolymorphWindow extends JPanel implements ActionListener{
     
     Polymorph bluePoly;
     Polymorph redPoly;
+    Polymorph mouseMorph;
+    Polymorph circleMorph;
     RedMorph redmorph = new RedMorph(100,100);
+    Polymorph imageMorph;
+    Polymorph JOPMorph;
     ArrayList<Polymorph> polymorphList = new ArrayList<Polymorph>();
     
     public static void main(String[] args) {
@@ -39,8 +45,18 @@ public class PolymorphWindow extends JPanel implements ActionListener{
    	 
    	 bluePoly = new BluePolymorph(50, 50);
    	 redPoly = new RedMorph(100, 100);
+   	 circleMorph = new CircleMorph(150, 150);
+   	 mouseMorph = new MouseFollowMorph(200, 200);
+   	 imageMorph = new ImageMorph(250, 250);
+   	 JOPMorph = new ImageMorph(350, 300);
+   	 
    	 polymorphList.add(bluePoly);
    	 polymorphList.add(new RedMorph( 100,100));
+   	 polymorphList.add(new MovingMorph(200, 200));
+   	 polymorphList.add(circleMorph);
+   	 polymorphList.add(mouseMorph);
+   	 polymorphList.add(imageMorph);
+   	 polymorphList.add(JOPMorph);
    	 
    	 timer = new Timer(1000 / 30, this);
    	 timer.start();
@@ -53,8 +69,8 @@ public class PolymorphWindow extends JPanel implements ActionListener{
    	
    	 //draw polymorph
    	 for (Polymorph p: polymorphList) {
+   		 System.out.println(p);
    		 p.draw(g);
-   		
    	 }
     }
 
@@ -62,7 +78,13 @@ public class PolymorphWindow extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
    	 repaint(); 
    	 for (Polymorph p: polymorphList) {
-   		p.update(); 
+   		p.update();
    	 }
+   	  if ((MouseInfo.getPointerInfo().getLocation().getX() > 350) && (MouseInfo.getPointerInfo().getLocation().getX()) < 400) {
+   		  System.out.println("x correct");
+   		  if ((MouseInfo.getPointerInfo().getLocation().getY() < 400) && (MouseInfo.getPointerInfo().getLocation().getY() > 350)) {
+   			  JOptionPane.showMessageDialog(null, "Clicked");
+   		  }
+   	  }
     }
 }

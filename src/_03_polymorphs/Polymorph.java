@@ -14,8 +14,7 @@ public abstract class Polymorph {
     }
     
     public void update(){
-    		setX(x+10);
-    		setY(y+10);
+
     }
     
     void setX(int X) {
