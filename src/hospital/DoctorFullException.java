@@ -1,4 +1,4 @@
-package _04_hospital;
+package hospital;
 
 public class DoctorFullException extends Exception {
 	boolean terminate() {

@@ -1,4 +1,4 @@
-package _04_hospital;
+package hospital;
 
 import java.util.ArrayList;
 
@@ -18,11 +18,14 @@ public class Hospital {
 		return patientList;
 	}
 	public void assignPatientsToDoctors() throws DoctorFullException {
-		for (int i = 0; i < doctorList.size(); i++) {
+		int j = 0;
+		for (int i = 0; i < patientList.size(); i++) {
 			try {
-				doctorList.get(i).assignPatient(patientList.get(i));
-				doctorList.get(i).assignPatient(patientList.get(i+1));
-				doctorList.get(i).assignPatient(patientList.get(i+2));
+				doctorList.get(j).assignPatient(patientList.get(i));
+				j++;
+				if (j == doctorList.size()) {
+					j = 0;
+				}
 			}
 			catch (IndexOutOfBoundsException e) {
 				break;

@@ -1,4 +1,4 @@
-package _04_hospital;
+package hospital;
 
 public class Surgeon extends Doctor {
 	@Override
